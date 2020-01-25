@@ -37,9 +37,8 @@ const Badge = styled.div`
   background-color: #4a90e2;
 `;
 
-let NavBar = ({user}) => (
-  <StyledNavBar>
-  </StyledNavBar>
+let NavBar = () => (
+  <StyledNavBar />
 );
 
 export default NavBar

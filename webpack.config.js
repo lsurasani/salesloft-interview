@@ -4,8 +4,6 @@ require('dotenv').config()
 var webpack = require('webpack');
 var path = require('path');
 
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-
 var BUILD_DIR = path.resolve(__dirname, './client/dist');
 var APP_DIR = path.resolve(__dirname, './client/src');
 
@@ -16,9 +14,9 @@ var config = {
     filename: 'app.js',
   },
   module: {
-    loaders : [
+    rules : [
       {
-        test: /\.jsx?/,
+        test: /\.js?/,
         include: APP_DIR,
         loader: 'babel-loader'
       },
@@ -29,13 +27,8 @@ var config = {
       }
     ]
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
 
   devServer: {
-    hot: true,
-    hotOnly: true,
     allowedHosts: ['localhost'],
     host: 'localhost',
     headers: {
