@@ -1,6 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import { fetchPeople } from '../actions/AsyncActions'
+import styled, { css } from 'styled-components'
 
 const Box = styled.div`
   display: grid;
@@ -41,12 +40,14 @@ const PageButton = styled.button`
   font-size: 16px;
   margin: 0 5px;
   display: inline;
-  border: 2px solid #4a90e2;
-  background-color: #4a90e2;
+  cursor: pointer;
+  ${props => props.disabled ?
+    css`background-color: #a8a8a8; border: 2px solid #a8a8a8; cursor: not-allowed;` :
+    css`background-color: #4a90e2; border: 2px solid #4a90e2;`
+  }
   border-radius: 3px;
   padding: 7px;
   color: white;
-  cursor: pointer;
 `
 
 const PeopleList = (props) => {
@@ -66,9 +67,8 @@ const PeopleList = (props) => {
 }
 
 const Page = (props) => {
-  const data = props.data
+  const { data, updatePage } = props
   const pages = data.paging
-  console.log(pages)
   const itemStyling = {
     fontSize: 16,
     margin: "0 5px",
@@ -77,11 +77,11 @@ const Page = (props) => {
 
   return (
     <div style={{ marginTop: 10, textAlign: 'center' }}>
-      <PageButton onClick={() => fetchPeople(1)}>{"<< First Page"}</PageButton>
-      <PageButton onClick={() => fetchPeople(pages.prev_page)}>{"< Previous Page"}</PageButton>
+      <PageButton onClick={() => updatePage(1)} disabled={pages.current_page === 1}>{"<< First Page"}</PageButton>
+      <PageButton onClick={() => updatePage(pages.prev_page)} disabled={!pages.prev_page}>{"< Previous Page"}</PageButton>
       <p style={itemStyling}>{`Page ${pages.current_page}`}</p>
-      <PageButton onClick={() => fetchPeople(pages.next_page)}>{"Next Page >"}</PageButton>
-      <PageButton onClick={() => fetchPeople(pages.total_pages)}>{"Last Page >>"}</PageButton>
+      <PageButton onClick={() => updatePage(pages.next_page)} disabled={!pages.next_page}>{"Next Page >"}</PageButton>
+      <PageButton onClick={() => updatePage(pages.total_pages)} disabled={pages.current_page === pages.total_pages}>{"Last Page >>"}</PageButton>
     </div>
   )
 }
@@ -104,7 +104,7 @@ const People = (props) => (
             <PeopleList people={props.people} />
           </tbody>
         </StyledTable>
-        <Page data={props.people.metadata} />
+        <Page data={props.people.metadata} updatePage={props.updatePage} />
       </div>
     }
   </PeopleBox>
@@ -112,7 +112,6 @@ const People = (props) => (
 
 export const Table = (props) => (
   <Box>
-    {console.log(props)}
-    <People people={props.people}/>
+    <People people={props.people} updatePage={props.onUpdatePage} />
   </Box>
 );
