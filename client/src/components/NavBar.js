@@ -3,21 +3,18 @@ import styled from 'styled-components'
 
 const NAV_HEIGHT = 46;
 const AVATAR_HEIGHT = 40;
-const AVATAR_WIDTH = 40;
 
 const StyledNavBar = styled.nav`
   display: flex;
-  justify-content: flex-end;
   align-content: center;
 
-  margin: 0px;
+  margin: 10px;
   padding 0px;
   height: ${NAV_HEIGHT}px;
-  width: 100%;
+  width: calc(100vw - 10);
 `;
 
 let NavText = styled.p`
-  color: #4a90e2;
   padding-right: 10px;
   padding-left: 10px;
   color: white;
@@ -38,7 +35,10 @@ const Badge = styled.div`
 `;
 
 let NavBar = () => (
-  <StyledNavBar />
+  <StyledNavBar>
+    <img src="/logo.png" height={AVATAR_HEIGHT} />
+    <Badge><NavText>SalesLoft Interview Challenge</NavText></Badge>
+  </StyledNavBar>
 );
 
 export default NavBar

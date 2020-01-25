@@ -24,6 +24,14 @@ var config = {
         test: /\.css$/,
         include: APP_DIR,
         loader: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       }
     ]
   },
@@ -31,6 +39,7 @@ var config = {
   devServer: {
     allowedHosts: ['localhost'],
     host: 'localhost',
+    port: 5001,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },

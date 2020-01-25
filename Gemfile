@@ -16,6 +16,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'foreman'
 gem 'rake'
+gem 'httparty'
 gem 'dotenv-rails'
 
 group :development, :test do

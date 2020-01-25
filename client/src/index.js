@@ -8,18 +8,18 @@ import { createStore, applyMiddleware } from 'redux';
 import App from './components/App'
 import Reducers from './reducers/CombinedReducers'
 
-import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history';
 
-import { fetchMe } from './actions/AsyncActions'
+import { fetchPeople } from './actions/AsyncActions'
 
-const history = createHistory()
+const history = createBrowserHistory()
 const middlewares = [thunkMiddleware, routerMiddleware(history)]
 let store = createStore(Reducers, applyMiddleware(...middlewares))
 
 window.store = store
 
 // bootstrap state
-store.dispatch(fetchMe());
+store.dispatch(fetchPeople());
 
 render(
   <App store={store} />,
