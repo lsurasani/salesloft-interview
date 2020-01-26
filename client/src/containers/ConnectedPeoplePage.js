@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { fetchPeople } from '../actions/AsyncActions';
-import PeoplePage from '../components/people-page/PeoplePage';
+import PeoplePage from '../components/people-page/index';
 
 const mapStateToProps = state => ({ people: state.people});
 const mapDispatchToProps = {

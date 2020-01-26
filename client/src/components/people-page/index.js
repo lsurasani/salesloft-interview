@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Table from '../shared/Table';
-import FrequencyModal from './PeopleFrequencyModal';
+import FrequencyModal from './FrequencyModal';
 import UserPageTitle from './Title';
 import PageButtons from './PageButtons';
 
