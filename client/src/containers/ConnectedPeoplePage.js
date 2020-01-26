@@ -1,15 +1,15 @@
-import { Table } from '../components/Table'
 import { connect } from 'react-redux'
 import { fetchPeople } from '../actions/AsyncActions';
+import PeoplePage from '../components/people-page/PeoplePage';
 
 const mapStateToProps = state => ({ people: state.people});
 const mapDispatchToProps = {
   onUpdatePage: fetchPeople
 }
 
-export const ConnectedTable = connect(
+export const ConnectedPeoplePage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Table);
+)(PeoplePage);
 
-export default ConnectedTable
+export default ConnectedPeoplePage;

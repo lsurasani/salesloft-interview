@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-
+import { ModalProvider } from 'styled-react-modal'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { LandingPage } from './LandingPage'
 
@@ -21,9 +21,11 @@ const theme = {
 const App = ({ store }) => (
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <Router>
+      <ModalProvider>
+        <Router>
           <Route exact path="/" component={LandingPage}/>
-      </Router>
+        </Router>
+      </ModalProvider>
     </ThemeProvider>
   </Provider>
 );

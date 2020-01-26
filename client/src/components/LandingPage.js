@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import NavBar from './NavBar'
-import { ConnectedTable } from '../containers/ConnectedTable'
+import ConnectedPeoplePage from '../containers/ConnectedPeoplePage'
 
 const Page = styled.div`
   display: grid;
@@ -21,7 +21,7 @@ export const LandingPage = () => (
   <Page>
     <NavBar />
     <FlexBox>
-      <ConnectedTable />
+      <ConnectedPeoplePage />
     </FlexBox>
   </Page>
 );
