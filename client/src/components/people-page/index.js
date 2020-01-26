@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Table from '../shared/Table';
-import FrequencyModal from './FrequencyModal';
+import Modal from '../shared/Modal';
 import UserPageTitle from './Title';
 import PageButtons from './PageButtons';
+import FrequencyContent from './FrequencyModal';
+import PeopleRow from '../people-page/TableRow';
+import PeopleTableHeader from '../people-page/TableHeader';
 
 const Box = styled.div`
   display: grid;
@@ -23,20 +26,48 @@ const PeopleBox = styled.div`
 `;
 
 const PeoplePage = props => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isFrequencyOpen, setIsFrequencyOpen] = useState(false);
+  const [isDuplicateOpen, setIsDuplicateOpen] = useState(false);
 
-  const toggleModal = () => setIsOpen(!isOpen);
+  const toggleFrequencyModal = () => setIsFrequencyOpen(!isFrequencyOpen);
+  const toggleDuplicateModal = () => setIsDuplicateOpen(!isDuplicateOpen);
+
+  const emails = props.people.data
+    ? props.people.data.map(data => data.email_address)
+    : null;
 
   return (
     <Box>
       <PeopleBox>
-        <UserPageTitle toggleModal={toggleModal} />
-        <FrequencyModal isOpen={isOpen} toggleModal={toggleModal} />
+        <UserPageTitle
+          toggleFrequencyModal={toggleFrequencyModal}
+          toggleDuplicateModal={toggleDuplicateModal}
+        />
+        <Modal
+          isOpen={isFrequencyOpen}
+          toggleModal={toggleFrequencyModal}
+          content={
+            <FrequencyContent
+              toggleModal={toggleFrequencyModal}
+              emails={emails}
+            />
+          }
+          title="Frequency of Email Address Letters"
+        />
+        <Modal
+          isOpen={isDuplicateOpen}
+          toggleModal={toggleDuplicateModal}
+          content={'hi'}
+          title="Potential Duplicate Email Addresses"
+        />
         {props.people.data === undefined ? (
           <div>Loading.. </div>
         ) : (
           <div>
-            <Table people={props.people} />
+            <Table
+              body={<PeopleRow people={props.people.data} />}
+              header={<PeopleTableHeader />}
+            />
             <PageButtons
               data={props.people.metadata}
               updatePage={props.onUpdatePage}

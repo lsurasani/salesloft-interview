@@ -1,10 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const TableHeaderCell = styled.th`
-  border: 1px solid gray;
-  text-align: left;
-`;
+import TableHeaderCell from '../styled/TableHeaderCell';
 
 const PeopleTableHeader = () => (
   <tr>

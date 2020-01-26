@@ -1,15 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const TableCell = styled.td`
-  border: 1px solid gray;
-  text-align: left;
-`;
+import TableCell from '../styled/TableCell';
 
 const PeopleRow = props => {
   const people = props.people;
 
-  const list = people.data.map(person => {
+  const list = people.map(person => {
     return (
       <tr key={person.id}>
         <TableCell>{`${person.first_name} ${person.last_name}`}</TableCell>

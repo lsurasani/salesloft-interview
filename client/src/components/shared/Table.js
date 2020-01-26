@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import PeopleRow from '../people-page/TableRow';
-import PeopleTableHeader from '../people-page/TableHeader';
 
 const StyledTable = styled.table`
   margin: auto;
@@ -11,14 +9,11 @@ const StyledTable = styled.table`
 `;
 
 const Table = props => {
+  const { header, body } = props;
   return (
     <StyledTable>
-      <thead>
-        <PeopleTableHeader />
-      </thead>
-      <tbody>
-        <PeopleRow people={props.people} />
-      </tbody>
+      <thead>{header}</thead>
+      <tbody>{body}</tbody>
     </StyledTable>
   );
 };

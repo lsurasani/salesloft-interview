@@ -1,28 +1,51 @@
 import React from 'react';
-import Modal from 'styled-react-modal';
+import Table from '../shared/Table';
+import TableHeaderCell from '../styled/TableHeaderCell';
+import TableCell from '../styled/TableCell';
 
-const StyledModal = Modal.styled`
-  width: 20rem;
-  height: 20rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-`;
+const calculateFrequencies = emails => {
+  let frequencyMap = {};
+  let sortedFrequencyMap = {};
 
-const FrequencyModal = props => {
-  const { isOpen, toggleModal } = props;
+  emails.map(email => {
+    [...email].forEach(c => {
+      frequencyMap[c] = frequencyMap[c] + 1 || 1;
+    });
+  });
 
-  return (
-    <StyledModal
-      isOpen={isOpen}
-      onBackgroundClick={toggleModal}
-      onEscapeKeydown={toggleModal}
-    >
-      <span>I am a modal!</span>
-      <button onClick={toggleModal}>Close me</button>
-    </StyledModal>
-  );
+  Object.keys(frequencyMap)
+    .sort((a, b) => frequencyMap[b] - frequencyMap[a])
+    .map(item => (sortedFrequencyMap[item] = frequencyMap[item]));
+
+  return sortedFrequencyMap;
 };
 
-export default FrequencyModal;
+const Header = () => (
+  <tr>
+    <TableHeaderCell>Letter</TableHeaderCell>
+    <TableHeaderCell>Count</TableHeaderCell>
+  </tr>
+);
+
+const Body = props => {
+  const counts = props.counts;
+  let counts_arr = [];
+
+  for (let key in counts) {
+    counts_arr.push(
+      <tr key={key}>
+        <TableCell>{key}</TableCell>
+        <TableCell>{counts[key]}</TableCell>
+      </tr>
+    );
+  }
+  return counts_arr;
+};
+
+const FrequencyContent = props => {
+  const frequencyMap = calculateFrequencies(props.emails);
+
+  return <Table header={<Header />} body={<Body counts={frequencyMap} />} />;
+};
+
+export default FrequencyContent;
