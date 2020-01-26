@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import PeopleRow from '../people-page/PeopleRow';
-import PeopleTableHeader from '../people-page/PeopleTableHeader';
+import PeopleRow from '../people-page/TableRow';
+import PeopleTableHeader from '../people-page/TableHeader';
 
 const StyledTable = styled.table`
   margin: auto;
