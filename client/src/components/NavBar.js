@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 const NAV_HEIGHT = 46;
 const AVATAR_HEIGHT = 40;
@@ -37,8 +37,10 @@ const Badge = styled.div`
 let NavBar = () => (
   <StyledNavBar>
     <img src="/logo.png" height={AVATAR_HEIGHT} />
-    <Badge><NavText>SalesLoft Interview Challenge</NavText></Badge>
+    <Badge>
+      <NavText>SalesLoft Interview Challenge</NavText>
+    </Badge>
   </StyledNavBar>
 );
 
-export default NavBar
+export default NavBar;

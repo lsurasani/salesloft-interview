@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import PeopleRow from '../people-page/TableRow';
 import PeopleTableHeader from '../people-page/TableHeader';
 
@@ -8,10 +8,9 @@ const StyledTable = styled.table`
   width: 100%;
   display: table;
   border: 1px solid gray;
-`
+`;
 
-const Table = (props) => {
-
+const Table = props => {
   return (
     <StyledTable>
       <thead>
@@ -21,7 +20,7 @@ const Table = (props) => {
         <PeopleRow people={props.people} />
       </tbody>
     </StyledTable>
-  )
-}
+  );
+};
 
 export default Table;

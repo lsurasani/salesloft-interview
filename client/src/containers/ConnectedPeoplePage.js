@@ -1,11 +1,11 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { fetchPeople } from '../actions/AsyncActions';
 import PeoplePage from '../components/people-page/index';
 
-const mapStateToProps = state => ({ people: state.people});
+const mapStateToProps = state => ({ people: state.people });
 const mapDispatchToProps = {
-  onUpdatePage: fetchPeople
-}
+  onUpdatePage: fetchPeople,
+};
 
 export const ConnectedPeoplePage = connect(
   mapStateToProps,
