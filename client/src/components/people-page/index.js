@@ -47,11 +47,7 @@ const PeoplePage = props => {
         <Modal
           isOpen={isFrequencyOpen}
           toggleModal={toggleFrequencyModal}
-          content={
-            <FrequencyModal
-              emails={emails}
-            />
-          }
+          content={<FrequencyModal emails={emails} />}
           title="Frequency of Email Address Letters"
         />
         <Modal

@@ -1,38 +1,37 @@
-import React from 'react'
+import React from 'react';
 import Table from '../shared/Table';
 import TableHeaderCell from '../styled/TableHeaderCell';
 import TableCell from '../styled/TableCell';
 import { levenshteinDistance } from '../../utils';
 
-const findDuplicates = (emails) => {
-  let emailFrequencyMap = {}
+const findDuplicates = emails => {
+  let emailFrequencyMap = {};
 
   for (let i = 0; i < emails.length; i++) {
-    let toAdd = []
+    let toAdd = [];
     for (let j = 0; j < i; j++) {
-      const distance = levenshteinDistance(emails[i], emails[j])
+      const distance = levenshteinDistance(emails[i], emails[j]);
 
       if (distance <= 2) {
-        toAdd.push(emails[j])
+        toAdd.push(emails[j]);
       }
-
     }
-    emailFrequencyMap[emails[i]] = toAdd
+    emailFrequencyMap[emails[i]] = toAdd;
   }
-  
-  return emailFrequencyMap
-}
+
+  return emailFrequencyMap;
+};
 
 const Header = () => (
   <tr>
     <TableHeaderCell>Email</TableHeaderCell>
     <TableHeaderCell>Possible Duplicates</TableHeaderCell>
   </tr>
-)
+);
 
-const Body = (props) => {
-  const duplicates = props.duplicates
-  let duplicatesArr = []
+const Body = props => {
+  const duplicates = props.duplicates;
+  let duplicatesArr = [];
 
   for (let key in duplicates) {
     if (duplicates[key].length) {
@@ -46,12 +45,17 @@ const Body = (props) => {
   }
 
   return duplicatesArr;
-}
+};
 
-const DuplicateModal = (props) => {
-  const calculatedDuplicates = findDuplicates(props.emails)
+const DuplicateModal = props => {
+  const calculatedDuplicates = findDuplicates(props.emails);
 
-  return <Table header={<Header />} body={<Body duplicates={calculatedDuplicates} />} />;
-}
+  return (
+    <Table
+      header={<Header />}
+      body={<Body duplicates={calculatedDuplicates} />}
+    />
+  );
+};
 
-export default DuplicateModal
+export default DuplicateModal;
