@@ -22,24 +22,24 @@ const calculateFrequencies = emails => {
 
 const Header = () => (
   <tr>
-    <TableHeaderCell>Letter</TableHeaderCell>
-    <TableHeaderCell>Count</TableHeaderCell>
+    <TableHeaderCell style={{ textAlign: 'center' }}>Letter</TableHeaderCell>
+    <TableHeaderCell style={{ textAlign: 'center' }}>Count</TableHeaderCell>
   </tr>
 );
 
 const Body = props => {
   const counts = props.counts;
-  let counts_arr = [];
+  let countsArr = [];
 
   for (let key in counts) {
-    counts_arr.push(
+    countsArr.push(
       <tr key={key}>
-        <TableCell>{key}</TableCell>
-        <TableCell>{counts[key]}</TableCell>
+        <TableCell style={{ textAlign: 'center' }}>{key}</TableCell>
+        <TableCell style={{ textAlign: 'center' }}>{counts[key]}</TableCell>
       </tr>
     );
   }
-  return counts_arr;
+  return countsArr;
 };
 
 const FrequencyContent = props => {

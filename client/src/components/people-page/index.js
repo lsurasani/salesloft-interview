@@ -4,7 +4,8 @@ import Table from '../shared/Table';
 import Modal from '../shared/Modal';
 import UserPageTitle from './Title';
 import PageButtons from './PageButtons';
-import FrequencyContent from './FrequencyModal';
+import FrequencyModal from './FrequencyModal';
+import DuplicateModal from './DuplicateModal';
 import PeopleRow from '../people-page/TableRow';
 import PeopleTableHeader from '../people-page/TableHeader';
 
@@ -47,8 +48,7 @@ const PeoplePage = props => {
           isOpen={isFrequencyOpen}
           toggleModal={toggleFrequencyModal}
           content={
-            <FrequencyContent
-              toggleModal={toggleFrequencyModal}
+            <FrequencyModal
               emails={emails}
             />
           }
@@ -57,7 +57,7 @@ const PeoplePage = props => {
         <Modal
           isOpen={isDuplicateOpen}
           toggleModal={toggleDuplicateModal}
-          content={'hi'}
+          content={<DuplicateModal emails={emails} />}
           title="Potential Duplicate Email Addresses"
         />
         {props.people.data === undefined ? (
