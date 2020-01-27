@@ -13,10 +13,11 @@ You will need:
 - You can page through results
 2) Shows the frequency of characters in the email addresses currently on the page
 3) Shows the potential duplicate email addresses currently on the page
-- Done by calculating the [Levenshtein distance](#levenshtein-distance) between the email addresses on that page
+- Done by calculating the [Levenshtein distance](#levenshtein-distance) between the email addresses on that page.
 
 Other things this application does well:
 - It's *very* component-ized, there's a separation of concerns to a fault, if I'm being honest (I had trouble finding some components after I refactored it all :grimacing: )
+- Show potential duplicates. I started out by trying to do something like `[...string1].filter(x => ![...string2].includes(x))` but I realized that this approach did a better job of telling me which email addresses had the most similar characters instead. Then, I tried to use the frequency-calculating code to narrow it down further and find which ones had frequencies of characters that were most similar, but that resulted in another variation of still just getting email addresses that have the most similar characters. Then, I tried to do a longest common substring match, but it was hard to figure out where the boundaries of that should be -- how 'long' is long enough? Finally, I found myself wishing I could just do a SQL `LIKE` operator which brought me to fuzzy matching, then some wikipedia articles later, to Levenshtein distance. 
 
 ###
 **What this application could do better**
